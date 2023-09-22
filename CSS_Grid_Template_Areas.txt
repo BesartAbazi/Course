@@ -1,0 +1,56 @@
+<div class="container">
+    <header>
+      <h1>Header</h1>
+    </header>
+    <nav>
+      <h1>Nav</h1>
+    </nav>
+    <section class="left">
+      <h2>Left</h2>
+    </section>
+    <section class="right">
+      <h2>Right</h2>
+    </section>
+    <footer>
+      <h1>Footer</h1>
+    </footer>
+</div>
+  
+  
+  
+Style:
+-------------------------------------------------------
+.container {
+  display: grid;
+  max-width: 900px;
+  position: relative;
+  margin: auto;
+  grid-template-areas: "head head"
+                       "nav nav" 
+                       "info services"
+                       "footer footer";
+  grid-template-rows: 300px 120px 800px 120px;
+  grid-template-columns: 1fr 3fr; 
+}
+ 
+header {
+  grid-area: head;
+} 
+ 
+nav {
+  grid-area: nav;
+} 
+ 
+.info {
+  grid-area: info;
+} 
+ 
+.services {
+  grid-area: services;
+}
+ 
+footer {
+  grid-area: footer;
+} 
+  
+  

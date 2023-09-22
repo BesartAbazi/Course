@@ -1,0 +1,54 @@
+display: grid;
+
+
+rows:
+	grid-template-rows: 4fr 5fr 1px;
+	
+columns:
+	grid-template-columns: 1fr 2fr;
+	
+rows and columns in 1 line:
+	grid-template: 4fr 5fr 1px / 1fr 2fr;
+	
+rows and columns in 1 line by using repeat function:
+	grid-template: repeat(3, 1fr) / repeat(2, 1fr);
+	
+minmax:
+	grid-template-columns: 100px minmax(100px, 500px) 100px;
+	
+gap (rows and columns):
+	gap: 20px 10px;
+	
+fusion of multiple rows:
+	grid-row: 4 / 6; 		-> row 4 until 5 (6 is not included)
+	grid-row: 4 / span 2;
+	
+fusion of multiple columns:
+	grid-column: 2 / 5;		-> column 2 until 4 (5 is not included)
+	grid-column: 2 / span 3;
+	
+grid-area (grid-row-start, grid-column-start, grid-row-end, grid-column-end):
+	grid-area: 2 / 3 / 4 / span 5;
+	
+	
+	
+properties for the areas/items/boxes:
+	justify-self:
+		specifies how an individual element should position itself with respect to the row axis. This property will override justify-items for any item on which it is declared.
+
+	align-self:
+		specifies how an individual element should position itself with respect to the column axis. This property will override align-items for any item on which it is declared.
+		
+
+if more areas/items/boxes get generated than declared:
+	grid-auto-rows:
+		specifies the height of implicitly added grid rows.
+		example: grid-auto-rows: 500px;
+		
+	grid-auto-columns:
+		specifies the width of implicitly added grid columns.
+	
+	grid-auto-flow:
+		specifies whether new elements should be added to rows or columns, and is declared on grid containers.
+		possible: row, column and dense 
+		example: grid-auto-flow: row;

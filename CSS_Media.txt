@@ -1,0 +1,18 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+@media only screen and (min-width: 320px) and (max-width: 480px){
+  	.gallery-item .thumbnail {
+      width: 95%;
+    }
+}
+
+@media only screen and (min-resolution: 150dpi) {
+  .logo {
+    background-image: url("../img/spaceship@2x.png");
+  }
+}
+
+@media only screen and (min-width: 480px), (orientation: landscape) {
+    /* CSS ruleset */
+}

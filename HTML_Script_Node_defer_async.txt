@@ -1,0 +1,5 @@
+<script src="javaScript.js" defer></script>
+<script src="javaScript.js" async></script>
+
+defer:	This attribute ensures that the entire HTML file has been parsed before the script is executed.
+async:	This attribute will allow the HTML parser to continue parsing as the script is being downloaded, but will execute immediately after it has been downloaded.

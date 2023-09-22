@@ -1,0 +1,44 @@
+Generalizations
+===============
+You have now been introduced to the fundamental Git workflow. You learned a lot! Let’s take a moment to generalize:
+
+Git is the industry-standard version control system for web developers
+Use Git commands to help keep track of changes made to a project:
+	git init:						creates a new Git repository
+	git status:						inspects the contents of the working directory and staging area
+	git add:						adds files from the working directory to the staging area
+	git add filename_1 filename_2:	Same as "git add", but with several files.
+	git add .						Same as "git add", but for all files.
+	git diff						shows the difference between the working directory and the staging area
+	git commit						permanently stores file changes from the staging area in the repository. Example: git commit -m "free text - change info"
+	git commit --amend				update your previous commit, instead of creating a new commit (keep all commits specific, clean, and succinct)
+	git commit --amend --no-edit	Same as "git commit --amend", but keep the same commit message
+	git log 						shows a list of all previous commits
+	git log --oneline 				shows the list of commits in one line format.
+	git log -S "keyword"			displays a list of commits that contain the keyword in the message
+	git log --oneline --graph		Displays a visual representation of how the branches and commits were created in order to help you make sense of your repository history
+	git show head:					In Git, the commit you are currently on is known as the HEAD commit. In many cases, the most recently made commit is the HEAD commit. To see the HEAD commit, enter:
+	git checkout HEAD filename:		Will restore the file in your working directory to look exactly as it did when you last made a commit.
+	git checkout -- filename		Same as "git checkout HEAD filename" (shortcut).
+	git reset HEAD filename:		Unstage a file from the staging area using "git reset The file change is unrelated, so you don’t want to include it in the commit.
+	git reset commit_SHA:			This command works by using the first 7 characters of the SHA of a previous commit. Git enables you to rewind to the part before you made the wrong turn.
+	
+	git stash						A good way to handle this is by using git stash, which allows you to get back to a clean commit point with a synchronized working tree, and avoid losing your local changes in the process. You’re “stashing” your local work temporarily in order to update a previous commit and later on retrieve your work.
+	git stash save "name"			Same as "git stash" but with a specific name.
+	git stash apply "name"			Apply stash with name "name"
+	git stash list					Get a list of all stashes
+	git stash clear					Clear the stash memory
+	
+	
+Aliases:
+========
+Example 1 (alias "co" for command "checkout"):
+	command for alias:	git config --global alias.co "checkout"
+	instead of			git checkout example_branch
+	now:				git co example_branch
+			
+			
+Username and E-Mail:
+====================
+git config --global user.name "Your Name"
+git config --global user.email "youremail@yourdomain.com"

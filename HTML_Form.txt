@@ -1,0 +1,60 @@
+Form
+====
+
+Text:
+	<label for="username">Username</label>
+    <input type="text" name="username" id="username">
+
+Input required:
+	<input id="username" name="username" type="text" minlength="3" maxlength="15" required>
+	
+Input required + pattern:
+	<input id="payment" name="payment" type="text" required pattern="[0-9]{14,16}">
+
+Password :
+	<label for="user-pw">Password:</label>
+	<input name="user-pw" type="password" id="user-pw"/>
+	
+Number:
+	<label for="amount">How many patties would you like?</label>
+	<input name="amount" step="1" type="number" id="amount"/>
+	
+Range:
+    <input name="doneness" type="range" id="doneness" min="0" max="5" step="0.5"/>
+	
+Checkbox:
+	<input id="lettuce" name="topping" type="checkbox" value="lettuce"/>
+	<label for="lettuce">Lettuce</label>
+	
+    <input id="tomato" name="topping" type="checkbox" value="tomato"/>
+	<label for="tomato">Tomato</label>
+	
+    <input id="cheese" name="topping" type="checkbox" value="cheese"/>
+    <label for="cheese">Cheese</label>
+	
+Radiobutton:
+	<input id="yes" type="radio" name="cheese" value="yes"/>
+    <label for="yes">Yes</label>
+    <input id="no" type="radio" name="cheese" value="no"/>
+    <label for="no">No</label>
+	
+Dropdown:
+	<label for="bun">What type of bun would you like?</label>
+    <select name="bun" id="bun">
+		<option value="sesame">Sesame</option>
+		<option value="potato">Potato</option>
+		<option value="ketcup">Ketcup</option>
+	</select>
+	
+Datalist:
+	<label for="sauce">What type of sauce would you like?</label>
+    <input type="text" list="sauces" id="sauce" name="sauce">
+	<datalist id="sauces">
+		<option value="ketchup"/>
+		<option value="mayo"/>
+		<option value="cheese"/>
+	</datalist>
+	
+Textarea:
+	<label for="extra">Anything else you want to add?</label>
+	<textarea name="extra" id="extra" rows="3" cols="40">Any text</textarea>

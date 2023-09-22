@@ -1,0 +1,3 @@
+GitHub Pages	Good for static applications
+Heroku			Good for more complex full stack apps
+Digital Ocean	Full control over cloud resources
