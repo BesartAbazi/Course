@@ -11,6 +11,7 @@ Use Git commands to help keep track of changes made to a project:
 	git add .						Same as "git add", but for all files.
 	git diff						shows the difference between the working directory and the staging area
 	git commit						permanently stores file changes from the staging area in the repository. Example: git commit -m "free text - change info"
+	git commit -m "free text"		Commit with commit message
 	git commit --amend				update your previous commit, instead of creating a new commit (keep all commits specific, clean, and succinct)
 	git commit --amend --no-edit	Same as "git commit --amend", but keep the same commit message
 	git log 						shows a list of all previous commits
@@ -28,6 +29,14 @@ Use Git commands to help keep track of changes made to a project:
 	git stash apply "name"			Apply stash with name "name"
 	git stash list					Get a list of all stashes
 	git stash clear					Clear the stash memory
+	
+	
+	git branch						Which branch you are currently on
+	git branch newbranch			Create new branch "newbranch"
+	git checkout newbranch			Checkout/Switch branch "newbranch" (creating a new branch does not mean that you automaticcally are on the new branch)
+	git merge newbranch				Merge branch "newbranch2 into master branch
+	git branch -d newbranch			Delete branch (a branch is created only for a period of time. When it has served its purpose then it can be deleted.)
+	git branch -D newbranch			Delete branch ("D" in uppercase) when the branch wa never merged, so not needed.
 	
 	
 Aliases:
