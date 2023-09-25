@@ -37,6 +37,13 @@ Use Git commands to help keep track of changes made to a project:
 	git merge newbranch				Merge branch "newbranch2 into master branch
 	git branch -d newbranch			Delete branch (a branch is created only for a period of time. When it has served its purpose then it can be deleted.)
 	git branch -D newbranch			Delete branch ("D" in uppercase) when the branch wa never merged, so not needed.
+
+
+    git clone https:\\... projname  Copy a git repository on local harddisc
+    git remote -v                   List the remotes (fetch and push)
+    git fetch                       See if changes have been made to the remote and bring the changes down to your local copy
+    git merge origin/master         After fetching changes from repository, which were done from other team members, this command will integrate these changes, origin/master, into your local master branch.
+    git push origin mybranch        Push your branch up to the remote, origin. From there other team members can review your branch and merge your work into the master branch
 	
 	
 Aliases:
