@@ -50,7 +50,6 @@ Use Git commands to help keep track of changes made to a project:
                                     -> By “rebasing” the new_feature branch onto the main one, we move all the changes made from new_feature to the front of main.
                                     -> As a golden rule, it’s important to only use rebase on a local branch that we’re working on individually.
 	
-	
 Aliases:
 ========
 Example 1 (alias "co" for command "checkout"):
