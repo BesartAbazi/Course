@@ -44,6 +44,12 @@ Use Git commands to help keep track of changes made to a project:
     git fetch                       See if changes have been made to the remote and bring the changes down to your local copy
     git merge origin/master         After fetching changes from repository, which were done from other team members, this command will integrate these changes, origin/master, into your local master branch.
     git push origin mybranch        Push your branch up to the remote, origin. From there other team members can review your branch and merge your work into the master branch
+
+    git rebase                      Only localy. Git rebase functionality helps branches keep up to date with the most recent changes in the main branch
+                                    If you are working on a branch and in the meantime some else changed the main branch. Then use rebase. 
+                                    -> Bring the updated changes from main into your branch with rebase. It keeps the Git commit history clean and easy to follow.
+                                    -> By “rebasing” the new_feature branch onto the main one, we move all the changes made from new_feature to the front of main.
+                                    -> As a golden rule, it’s important to only use rebase on a local branch that we’re working on individually.
 	
 	
 Aliases:
