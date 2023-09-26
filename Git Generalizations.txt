@@ -1,7 +1,6 @@
 Generalizations
 ===============
 You have now been introduced to the fundamental Git workflow. You learned a lot! Let’s take a moment to generalize:
-
 Git is the industry-standard version control system for web developers
 Use Git commands to help keep track of changes made to a project:
 	git init:						creates a new Git repository
@@ -64,3 +63,4 @@ Username and E-Mail:
 ====================
 git config --global user.name "Your Name"
 git config --global user.email "youremail@yourdomain.com"
+
