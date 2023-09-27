@@ -49,6 +49,12 @@ Use Git commands to help keep track of changes made to a project:
                                     -> Bring the updated changes from main into your branch with rebase. It keeps the Git commit history clean and easy to follow.
                                     -> By “rebasing” the new_feature branch onto the main one, we move all the changes made from new_feature to the front of main.
                                     -> As a golden rule, it’s important to only use rebase on a local branch that we’re working on individually.
+
+
+    git remote add upstream https.. If you fork a repository and start developing on new repository, created on your github account, you can still get the updates from the parent repository.
+                                    -> This code the setup of the upstream/link to the partent repository.
+                                    -> https is the path of the parent repository
+    git fetch upstream              Update our repository from the parent repository
 	
 Aliases:
 ========
