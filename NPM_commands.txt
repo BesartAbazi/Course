@@ -1,0 +1,21 @@
+Init:       npm Init
+            npm init -y        // initialized quickly without inputs
+            -> package.json file get created
+
+Install:    npm i                   // Automatically install all packages listed as dependencies or development dependencies from the package.json
+            npm i --production      // Automatically install all packages listed as dependencies, but leave out development dependencies.
+            npm i <package name> or npm install <package name>
+
+            npm install nodemon --save-dev      // development dependency
+            or
+            npm install nodemon -D              // development dependency
+
+            /*
+                package.json:
+                "devDependencies": {
+                    ...
+                }
+            */
+
+            // Global packages: Unlike local package dependencies or development dependencies, packages installed globally will not be listed in a projects package.json file and they will be stored in a separate global node_modules/ folder.
+            npm install <package name> -g         // global package, available system-wide, avoid importing into each project’s code
