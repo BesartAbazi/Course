@@ -13,5 +13,3 @@ const transformData = (line) => {
 
 myInterface.on('line', transformData);
 
-________________________________________
-This email was scanned by Antivirus. 
