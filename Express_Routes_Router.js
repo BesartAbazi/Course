@@ -13,7 +13,7 @@ seedElements(expressions, 'expressions');
 
 const PORT = process.env.PORT || 4001;
 
-expressionsRouter.get('/expressions', (req, res, next) => {
+expressionsRouter.get('/', (req, res, next) => {
 	res.send(expressions);
 });
 
