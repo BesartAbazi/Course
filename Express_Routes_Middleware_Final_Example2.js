@@ -34,92 +34,94 @@ app.use(express.static('public'));
 
 const PORT = process.env.PORT || 4001;
 
-const jellybeanBag = {
-    mystery: {
-        number: 4
+const cards = [
+    {
+        id: 1,
+        suit: 'Clubs',
+        rank: '2'
     },
-    lemon: {
-        number: 5
+    {
+        id: 2,
+        suit: 'Diamonds',
+        rank: 'Jack'
     },
-    rootBeer: {
-        number: 25
-    },
-    cherry: {
-        number: 3
-    },
-    licorice: {
-        number: 1
+    {
+        id: 3,
+        suit: 'Hearts',
+        rank: '10'
     }
-};
-
-// Body-parsing Middleware
-app.use(bodyParser.json());
+];
+let nextId = 4;
 
 // Logging Middleware
 if (!process.env.IS_TEST_ENV) {
-    app.use(morgan('dev'));
+    app.use(morgan('short'));
 }
 
-// Middleware for all routes with path '/beans/:beanName'
-app.use('/beans/:beanName', (req, res, next) => {
-    const beanName = req.params.beanName;
-    if (!jellybeanBag[beanName]) {
-        return res.status(404).send('Bean with that name does not exist');
+// Parsing
+app.use(bodyParser.json());
+
+// Middleware for all routes with the path '/cards/:cardId'
+app.use('/cards/:cardId', (req, res, next) => {
+    const cardId = Number(req.params.cardId);
+    const cardIndex = cards.findIndex(card => card.id === cardId);
+    if (cardIndex === -1) {
+        return res.status(404).send('Card not found');
     }
-    req.bean = jellybeanBag[beanName];
-    req.beanName = beanName;
+    req.cardIndex = cardIndex;
     next();
 });
 
-app.get('/beans/', (req, res, next) => {
-    res.send(jellybeanBag);
-});
-
-app.post('/beans/', (req, res, next) => {
-    const body = req.body;
-    const beanName = body.name;
-    if (jellybeanBag[beanName] || jellybeanBag[beanName] === 0) {
-        return res.status(400).send('Bean with that name already exists!');
+// Middleware for POST and PUT
+const validateCard = (req, res, next) => {
+    const newCard = req.body;
+    const validSuits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
+    const validRanks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
+    if (validSuits.indexOf(newCard.suit) === -1 || validRanks.indexOf(newCard.rank) === -1) {
+        return res.status(400).send('Invalid card!');
     }
-    const numberOfBeans = Number(body.number) || 0;
-    jellybeanBag[beanName] = {
-        number: numberOfBeans
-    };
-    res.send(jellybeanBag[beanName]);
+    req.newCard = newCard;
+    next();
+};
+
+
+// Get all Cards
+app.get('/cards/', (req, res, next) => {
+    res.send(cards);
 });
 
-app.get('/beans/:beanName', (req, res, next) => {
-    res.send(req.bean);
+// Get a single Card
+app.get('/cards/:cardId', (req, res, next) => {
+    res.send(cards[req.cardIndex]);
 });
 
-app.post('/beans/:beanName/add', (req, res, next) => {
-    const numberOfBeans = Number(req.body.number) || 0;
-    req.bean.number += numberOfBeans;
-    res.send(req.bean);
+// Create a new Card
+app.post('/cards/', validateCard, (req, res, next) => {
+    req.newCard.id = nextId++;
+    cards.push(req.newCard);
+    res.status(201).send(req.newCard);
 });
 
-app.post('/beans/:beanName/remove', (req, res, next) => {
-    const numberOfBeans = Number(req.body.number) || 0;
-    if (req.bean.number < numberOfBeans) {
-        return res.status(400).send('Not enough beans in the jar to remove!');
+// Update a Card
+app.put('/cards/:cardId', validateCard, (req, res, next) => {
+    const cardId = Number(req.params.cardId);
+    if (!req.newCard.id || req.newCard.id !== cardId) {
+        req.newCard.id = cardId;
     }
-    req.bean.number -= numberOfBeans;
-    res.send(req.bean);
+    cards[req.cardIndex] = req.newCard;
+    res.send(req.newCard);
 });
 
-app.delete('/beans/:beanName', (req, res, next) => {
-    const beanName = req.beanName;
-    jellybeanBag[beanName] = null;
+// Delete a Card
+app.delete('/cards/:cardId', (req, res, next) => {
+    cards.splice(req.cardIndex, 1);
     res.status(204).send();
 });
 
-// Error handler middleware
+// Error handler middleware (has to be at last before app.listen)
 app.use(errorHandler());
-// app.use((err, req, res, next) => {
-//     const status = err.status || 500;
-//     res.status(status).send(err.message);
-// })
 
+// Start the server
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
 });
