@@ -1,0 +1,55 @@
+Cookie 
+    Cookie Security:
+        Cookies often store sensitive information, especially when they’re used in session management. Cookies are also used to store a user’s personal preferences or history, which should also stay secure.
+        It’s important to add security to the cookies, especially in the case that someone tries to swipe data from them to steal your session data!
+        The first step to securing a cookie could be adding an expiration date or duration so a cookie doesn’t persist longer than it needs to. 
+        We can specify that information through the Set-Cookie header in an HTTP response like so:
+            Set-Cookie: Key=Value; expires=Saturday, 01-May-2021 07:30:10 GMT
+        The HttpOnly attribute for the Set-Cookie header makes sure that the cookie’s data is not accessible to a script running client-side. 
+        This helps prevent a Cross-Site Scripting (XSS) attack that tries to steal a session cookie and take over the victim’s session, which is extremely common.
+        Set-Cookie: Key=Value; expires=Saturday, 01-May-2021 07:30:10 GMT; HTTPOnly
+        Here are some other Set-Cookie options:
+            SameSite helps prevent Cross-Site Request Forgery (CSRF) attacks.
+            Secure makes sure cookies are only sent with a request to an HTTPS page.
+            
+What is localStorage?
+Reading cookie data can involve some tedious syntax and relying on cookies to be attached for each HTTP request can affect a website’s performance. 
+Cookies are also quite limited in storage. Cookies were the only option for storing miscellaneous data outside of the database until HTML5 came around with localStorage and sessionStorage.
+
+localStorage is a newer form of client-side storage. These browser files also store data as key-value pairs, and web applications can choose to store up to 5MB of data in localStorage.
+localStorage does not interact with the server, but is instead accessed and modified by simple client-side JavaScript code. localStorage will persist even after a user exits the browser, and will continue to persist until the browser cache is deleted.
+
+sessionStorage, which uses the same syntax as localStorage, can hold session data. This storage clears once the browser closes, so, for many use cases, this is more secure.
+localStorage/sessionStorage security depends on the general security of your web application’s code against common web attacks. Coming up, we will talk more in-depth on how they compare to cookies.
+
+Add a key-value pair in localStorage:   localStorage.setItem('keyName', value);
+Get a key-value pair from localStorage:  localStorage.getItem('keyName');
+
+
+More On Session Security
+    Users and web developers should be concerned with session hijacking, an attack in which an attacker steals session identifiers and gains access to the web server as a different person.
+
+    Why hijack a session? If a user is in an authenticated session on their bank’s website, the attacker could transfer funds from a user’s bank account. Another scenario is an attacker could hijack the session of an authorized admin on an organization’s website and steal data.
+
+    Below, we will introduce a couple of secure practices for implementing sessions that prevents hijacking attacks.
+
+Define Session Expiry
+    The shorter a session is, the less time an attacker has to hijack a session. This is usually done by setting an expiry on the session cookie.
+    It’s also important to implement an automatic session expiration on the backend.
+
+    A timeout dictates how long a session can stay open. 
+    The session timeout after an idle period is a common feature on bank websites! Other environments that require high security even implement an absolute timeout where a user’s session ends regardless of activity.
+
+Make Session IDs Difficult to Hack
+    Session IDs are just like passwords — the longer and more random, the better. According to OWASP, session identifiers should be at least 128 bits long.
+    This helps prevent brute-force attacks where a hacker uses multiple bots to guess IDs.
+
+    In order to make the session ID random, ensure it does not contain personally identifying information and that the algorithm to generate an ID doesn’t follow a predefined pattern that makes it easier to guess.
+
+Securing Cookies
+    Session cookies can be made more secure if they expire. This decreases the timeframe where an attacker could steal the session identifier.
+
+    You should also use the Secure, HttpOnly, and SameSite attributes in the Set-Cookie HTTP header.
+
+Enforce HTTPS
+    Ideally, all sessions-based web applications should enforce HTTPS for all communication! This prevents common web attacks that could give the attacker access to the session.
