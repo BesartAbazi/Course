@@ -31,6 +31,8 @@ app.use(
         A memory cache like Redis or Memcached
 
     express-session provides an in-memory store called, MemoryStore(). If no other store is specified, then this is set as the default storage. Let’s explore how we would add this to the middleware.
+
+    Note: server-side storing in-memory sessions is something that should be done only during development, NOT during production due to security risks.
 */
 
 // instantiate a new store like so:
@@ -45,8 +47,6 @@ app.use(
         store,
     })
 );
-
-// Note: server-side storing in-memory sessions is something that should be done only during development, NOT during production due to security risks.
 
 
 // Tell the client browser to create a cookie that stores the session ID. We will also modify cookie attributes to add a bit of security. We can add a cookie property in our session middleware like so:
