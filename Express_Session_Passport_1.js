@@ -75,7 +75,8 @@ passport.deserializeUser((id, done) => {
 });
 
 
-/*  The new LocalStrategy object will take in an anonymous function with the following parameters:
+/*  When a user attempts to log in, Passport’s local strategy will be called and look for a user in the DB with the password that was sent.
+    The new LocalStrategy object will take in an anonymous function with the following parameters:
         - username
         - password
         - A callback function called done.
