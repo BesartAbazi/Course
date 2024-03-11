@@ -54,3 +54,63 @@
 
         All methods of authorization have advantages and vulnerabilities and OAuth is no exception; however, it remains a generally secure and convenient way to authenticate yourself on trusted applications.
 */
+
+// Installing oauth2-server
+npm install oauth2 - server
+
+// Instantiate the oauth2-server module and store it in a variable
+const OAuth2Server = require('oauth2-server');
+
+// Create an instance of the OAuth2Server object and store it in a variable
+const oauth = new OAuth2Server();
+
+// The OAuth2Server object requires a model object which contains functions to access, store, and validate our access tokens
+// Inside the constructor of OAuth2Server, pass an object with an attribute named "model", which will get the mentioned functions assigned
+const oauth = new OAuth2Server({
+    model: require('./model.js')
+});
+
+// OAuth2Server can be supplied with additional options in the constructor. To pass tokens inside the URL, we’ll set the allowBearerTokensInQueryString attribute to true:
+const oauth = new OAuth2Server({
+    model: require('./model.js'),
+    allowBearerTokensInQueryString: true
+})
+
+// The access token lifetime can also be configured as an option using the accessTokenLifetime attribute. The lifetime is set in seconds, and we can set the access token lifetime to one hour like this:
+const oauth = new OAuth2Server({
+    model: require('./model.js'),
+    allowBearerTokensInQueryString: true,
+    accessTokenLifetime: 60 * 60
+})
+
+/*
+    OAuth defines two types of clients — confidential clients and public clients:
+        - Public clients are NOT able to store credentials securely and can only use grant types that do not use their client secret.
+
+        - Confidential clients are applications that can be registered to an authorization server using credentials. 
+        Those credentials, a client ID and a client secret, can be secured without exposing them to a third party. 
+        They require a backend server to store the credentials. A client’s ability to securely store credentials determines which type of OAuth authorization flows should be used.
+
+    We’ll be implementing the Client Credentials flow to obtain an access token for authentication. When a developer registers a client in an OAuth application, they’ll need:
+        - A Client ID: a public identifier for apps that is unique across all clients and the authorization server.
+        - A Client Secret: a secret key known only to the application and the authorization server.
+
+    OAuth 2.0 is flexible in which databases to use, and the oauth2-server package implicitly allows Postgres, MongoDB, and Redis. For our example application, we use an in-memory database defined in db.js. 
+    Inside db.js, we use modules.exports to create a module to hold our confidential client credentials and access tokens.
+    We can register an application to the list of confidentialClients in db.js. Inside the module.exports object, we create an attribute named confidentialClients and set it equal to an array. 
+    Within the array, we create an object with the clientId and clientSecret, and specify 'client_credentials' in our array of grant types.
+
+    In our database, we’ll create a location to store access tokens. Within the module.exports object, we create another property named "tokens" and set it equal to an empty array.
+*/
+
+module.exports = {
+    confidentialClients: [{
+        clientId: 'secretapplication',
+        clientSecret: 'topsecret',
+        grants: [
+            'client_credentials'
+        ]
+    }],
+
+    tokens: []
+}
