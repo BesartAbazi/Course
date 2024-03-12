@@ -114,3 +114,26 @@ module.exports = {
 
     tokens: []
 }
+
+
+/*
+    getClient()
+        OAuth2Server requires certain functions implemented in the model regardless of the authorization flow used. The getClient() function is an example of a required model function for all flows. 
+        The function is used to retrieve a client using a Client ID and/or a Client Secret combination.
+        The getClient() function takes two arguments: clientId and clientSecret. We must write a database query to match the provided arguments and its implementation will vary depending on the type of database used. 
+        Since we are using JavaScript as our in-memory database, we can use the .filter() method to evaluate if the clientId and clientSecret match any confidential clients in db.js and return the matching client.
+        The getClient() function returns the first found element in confidentialClients.
+*/
+
+const getClient = (clientId, clientSecret) => {
+    let confidentialClients = db.confidentialClients.filter((client) => {
+        return client.clientId === clientId && client.clientSecret === clientSecret
+    });
+    return confidentialClients[0];
+}
+
+
+// Finally, we export the function from model.js so that it can be used from other files. We can do this using module.exports object.
+module.exports = {
+    getClient: getClient
+}
