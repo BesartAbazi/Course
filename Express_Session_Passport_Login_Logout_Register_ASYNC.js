@@ -53,6 +53,7 @@ passport.serializeUser((user, done) => {
 });
 
 /*
+    The deserializeUser() function uses the id to look up the user in the database and retrieve the user object with data
     For any subsequent request, the user object can be retrieved from the session via the deserializeUser() function.
     For the deserializeUser function, we pass the key that was used when we initially serialized a user (id). The id is used to look up the user in storage, and the fetched object is attached to the request object as req.user across our whole application.
     This way we’re able to access the logged-in user’s data in req.user on every subsequent request!

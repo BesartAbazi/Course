@@ -53,9 +53,11 @@ app.use(
 app.use(
     session({
         secret: "f4z4gs$Gcg",
-        cookie: { maxAge: 1000 * 60 * 60 * 24, secure: true, sameSite: "none" },    /*  maxAge: Number of milliseconds until the cookie expires 
+        cookie: { maxAge: 1000 * 60 * 60 * 24, secure: true, sameSite: "none" },    /*  Tell the client browser to create a cookie that stores the session ID. We will also modify cookie attributes to add a bit of security
+                                                                                        maxAge: Number of milliseconds until the cookie expires 
                                                                                         secure: "true" -> Sent to the server via HTTPS
-                                                                                        sameSite: "none" -> In order to allow a cross-site cookie through different browsers.*/
+                                                                                        sameSite: "none" -> In order to allow a cross-site cookie through different browsers.
+                                                                                    */
         saveUninitialized: false,
         resave: false,
     })

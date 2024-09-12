@@ -1,15 +1,17 @@
 const express = require('express');
 const app = express();
 const session = require('express-session');
-const store = new session.MemoryStore();
+const store = new session.MemoryStore();    /*  express-session provides an in-memory store called, MemoryStore(). If no other store is specified, then this is set as the default storage. Let’s explore how we would add this to the middleware.
+                                                Storing in-memory sessions is something that should be done only during development, NOT during production due to security risks.
+                                            */
 
 app.use(
     session({
         secret: 'f4z4gs$Gcg',
-        cookie: { maxAge: 300000000, secure: true, sameSite: 'none' },
+        cookie: { maxAge: 300000000, secure: true, sameSite: 'none' },  // tell the client browser to create a cookie that stores the session ID. We will also modify cookie attributes to add a bit of security
         saveUninitialized: false,
         resave: false,
-        store,
+        store, // see above: new session.MemoryStore()
     })
 );
 
