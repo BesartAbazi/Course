@@ -137,3 +137,80 @@ const getClient = (clientId, clientSecret) => {
 module.exports = {
     getClient: getClient
 }
+
+
+/*
+    saveToken()
+        The saveToken() function must be implemented for all grant types in the model used by OAuth2Server. This function stores the access token as an object to a database when an access token is obtained.
+        The saveToken() function is implemented with three arguments: token, client, and user. We set the token.client equal an object in which the id attribute is equal to the passed client’s clientId. 
+        The client is formatted like below:
+*/
+const saveToken = (token, client, user) => {
+    token.client = {
+        id: client.clientId
+    }
+}
+
+// The token.user is set equal to an object with the username attribute. We set the username attribute equal to the username of the passed user object. The username is formatted like below:
+token.user = {
+    username: user.username
+}
+
+// With the token formatted, we can save the token to our database by pushing the token to our db.tokens array and returning the token.
+db.tokens.push(token);
+return token;
+
+// Our final saveToken() function looks like:
+const saveToken = (token, client, user) => {
+    token.client = {
+        id: client.clientId
+    }
+    token.user = {
+        username: user.username
+    }
+    db.tokens.push(token);
+    return token;
+}
+
+// We’ll also export the saveToken() function from models.js using module.exports (together with the getClient() function):
+module.exports = {
+    getClient: getClient,
+    saveToken: saveToken
+}
+
+
+
+
+/*
+    getUserFromClient()
+        Certain grant types have specific functions that must be implemented for them to work. The Client Credentials grant type must have the getUserFromClient() function implemented to be used.
+        The getUserFromClient() function is invoked to retrieve the user associated with the specified client. We are not using a user in our application so we can return an empty object. 
+        However, leaving out this function declaration will throw an error when using the Client Credentials grant type!
+*/
+const getUserFromClient = (client) => {
+    return {};
+}
+
+// Finally, we export the function from model.js so that it can be used from other files. We can do this using module.exports object.
+module.exports = {
+    // Other modules to export
+    getUserFromClient: getUserFromClient
+}
+
+
+
+/*
+    getUserFromClient()
+        Certain grant types have specific functions that must be implemented for them to work. The Client Credentials grant type must have the getUserFromClient() function implemented to be used.
+        The getUserFromClient() function is invoked to retrieve the user associated with the specified client. We are not using a user in our application so we can return an empty object. However, leaving out this function declaration will throw an error when using the Client Credentials grant type!
+*/
+
+const getUserFromClient = (client) => {
+    return {};
+}
+
+// Finally, we export the function from model.js so that it can be used from other files. We can do this using module.exports object.
+module.exports = {
+    // Other modules to export
+    getUserFromClient: getUserFromClient
+}
