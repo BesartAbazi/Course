@@ -40,6 +40,7 @@ const passwordHash = async (password, saltRounds) => {
     
     bcrypt provides us with a handy function called compare() which takes in a plaintext password (password) and a hashed password (hash): bcrypt.compare(password, hash);
     bcrypt.compare() deduces the salt from the provided hash and is able to then hash the provided password correctly for comparison.
+    Using bcrypt.compare() pulls the salt out of stored hash in the database and uses it to hash the retrieved password and perform the comparison. The function will then return true if the passwords match and false if they don’t.
 */
 
 const comparePasswords = async (password, hash) => {
