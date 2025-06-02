@@ -1,95 +1,95 @@
-class School{
-  constructor(name, level, numbersOfStudents){
-    this._name = name;
-    this._level = level;
-    this._numberOfStudents = numbersOfStudents;
-  }
-  
-  // Getters
-  get name(){
-    return this._name;
-  }
-  
-  get level(){
-    return this._level;
-  }
-  
-  get numberOfStudents(){
-    return this._numberOfStudents;
-  }
-  
-  // Setters
-  set numberOfStudents(numberOfStudents){
-    if (typeof numberOfStudents === 'number')
-      this._numberOfStudents = numberOfStudents;
-    else
-      console.log('Invalid input: numberOfStudents must be set to a Number.');
-  }
-  
-  // Methods
-  quickFacts(){
-    console.log(`${this._name} educates ${this._numberOfStudents} students at the ${this._level} school level.`);
-  }
-  
-  static pickSubstituteTeacher(substituteTeachers){
-    return substituteTeachers[Math.floor(Math.random() * substituteTeachers.length)];
-  }
+class School {
+    constructor(name, level, numbersOfStudents) {
+        this._name = name;
+        this._level = level;
+        this._numberOfStudents = numbersOfStudents;
+    }
+
+    // Getters
+    get name() {
+        return this._name;
+    }
+
+    get level() {
+        return this._level;
+    }
+
+    get numberOfStudents() {
+        return this._numberOfStudents;
+    }
+
+    // Setters
+    set numberOfStudents(numberOfStudents) {
+        if (typeof numberOfStudents === 'number')
+            this._numberOfStudents = numberOfStudents;
+        else
+            console.log('Invalid input: numberOfStudents must be set to a Number.');
+    }
+
+    // Methods
+    quickFacts() {
+        console.log(`${this._name} educates ${this._numberOfStudents} students at the ${this._level} school level.`);
+    }
+
+    static pickSubstituteTeacher(substituteTeachers) {
+        return substituteTeachers[Math.floor(Math.random() * substituteTeachers.length)];
+    }
 }
 
 
 
 
-class PrimarySchool extends School{
-  constructor(name, numbersOfStudents, pickupPolicy){
-    super(name, 'primary', numbersOfStudents);
-    this._pickupPolicy = pickupPolicy;
-  }
+class PrimarySchool extends School {
+    constructor(name, numbersOfStudents, pickupPolicy) {
+        super(name, 'primary', numbersOfStudents);
+        this._pickupPolicy = pickupPolicy;
+    }
 
-  //Getters
-  get pickupPolicy(){
-    return this._pickupPolicy;
-  }
+    //Getters
+    get pickupPolicy() {
+        return this._pickupPolicy;
+    }
 }
 
 
 
 
-class HighSchool extends School{
-  constructor(name, numbersOfStudents, sportsTeams){
-    super(name, 'high', numbersOfStudents);
-    this._sportsTeams = sportsTeams;
-  }
+class HighSchool extends School {
+    constructor(name, numbersOfStudents, sportsTeams) {
+        super(name, 'high', numbersOfStudents);
+        this._sportsTeams = sportsTeams;
+    }
 
-  //Getters
-  get sportsTeams(){
-    console.log(this._sportsTeams);
-  }
+    //Getters
+    get sportsTeams() {
+        console.log(this._sportsTeams);
+    }
 }
 
 
 
 
-class Middle extends School{
-  constructor(name, level, numbersOfStudents){
-    super(name, level, numbersOfStudents);
-  }
+class Middle extends School {
+    constructor(name, level, numbersOfStudents) {
+        super(name, level, numbersOfStudents);
+    }
 }
 
 
 
 
-class SchoolCatalog{
-  constructor(){
-    this._schoolNames = [];
-  }
+class SchoolCatalog {
+    constructor() {
+        this._schoolNames = [];
+    }
 
-  get schoolNames(){
-    return this._schoolNames;
-  }
+    get schoolNames() {
+        return this._schoolNames;
+    }
 
-  set schoolNames(name){
-    this._schoolNames.push(name);
-  }
+    set schoolNames(name) {
+        this._schoolNames.push(name);
+    }
 }
 
 
